@@ -1,5 +1,7 @@
 package br.com.ijuris.domain;
 
+import br.com.ijuris.exception.BusinessException;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -22,8 +24,15 @@ public class User {
     }
 
     public static User create(UUID id, String nome, String sobrenome, String cpf, String email, LocalDate dataNascimento) {
-
+        validarNome(nome);
+        validarNome(sobrenome);
         return new User(id, nome, sobrenome, cpf, email, dataNascimento);
+    }
+
+    private static void validarNome(String name) {
+        if (name.isBlank()) {
+            throw new BusinessException("Nome ou sobrenome não pode estar vazio!");
+        }
     }
 
     public UUID getId() {
