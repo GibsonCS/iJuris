@@ -42,4 +42,12 @@ class UserTest {
                 VALID_DATA_NASCIMENTO
         ));
     }
+
+    @Test
+    void shouldNotCreateAnUserWithInvalidEmail() {
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+                VALID_SOBRENOME, VALID_CPF, "gibson23.com",
+                VALID_DATA_NASCIMENTO
+        ));
+    }
 }
