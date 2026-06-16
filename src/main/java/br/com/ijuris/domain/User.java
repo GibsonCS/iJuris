@@ -28,7 +28,7 @@ public class User {
     public static User create(UUID id, String nome, String sobrenome, String cpf, String email, LocalDate dataNascimento) {
         validarNome(nome);
         validarNome(sobrenome);
-        return new User(id, nome, sobrenome, Cpf.create(cpf), email, dataNascimento);
+        return new User(id, nome, sobrenome, new Cpf(cpf), email, dataNascimento);
     }
 
     private static void validarNome(String name) {
