@@ -29,7 +29,16 @@ class UserTest {
     @Test
     void shouldNotCreateUserWithInvalidName() {
 
-        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, "", VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, "",
+                VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
+                VALID_DATA_NASCIMENTO
+        ));
+    }
+
+    @Test
+    void shouldNotCreateAnUserWithInvalidCpf() {
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+                VALID_SOBRENOME, "ASD", VALID_EMAIL,
                 VALID_DATA_NASCIMENTO
         ));
     }
