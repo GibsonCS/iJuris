@@ -1,5 +1,6 @@
 package br.com.ijuris.domain;
 
+import br.com.ijuris.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,13 @@ class UserTest {
         );
 
         Assertions.assertEquals(VALID_ID, userCreated.getId());
+    }
+
+    @Test
+    void shouldNotCreateUserWithInvalidName() {
+
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, "", VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
+                VALID_DATA_NASCIMENTO
+        ));
     }
 }
