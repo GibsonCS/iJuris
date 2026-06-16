@@ -50,4 +50,12 @@ class UserTest {
                 VALID_DATA_NASCIMENTO
         ));
     }
+
+    @Test
+    void shouldNotCreateUserLessThan18YearsOld() {
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+                VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
+                LocalDate.of(2023, 1, 22)
+        ));
+    }
 }
