@@ -1,6 +1,7 @@
 package br.com.ijuris.domain;
 
 import br.com.ijuris.domain.vo.Cpf;
+import br.com.ijuris.domain.vo.Email;
 import br.com.ijuris.exception.BusinessException;
 
 import java.time.LocalDate;
@@ -12,11 +13,11 @@ public class User {
     private final Cpf cpf;
     private final LocalDate dataNascimento;
 
-    private final String email;
+    private final Email email;
     private final String nome;
     private final String sobrenome;
 
-    private User(UUID id, String nome, String sobrenome, Cpf cpf, String email, LocalDate dataNascimento) {
+    private User(UUID id, String nome, String sobrenome, Cpf cpf, Email email, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -28,7 +29,7 @@ public class User {
     public static User create(UUID id, String nome, String sobrenome, String cpf, String email, LocalDate dataNascimento) {
         validarNome(nome);
         validarNome(sobrenome);
-        return new User(id, nome, sobrenome, new Cpf(cpf), email, dataNascimento);
+        return new User(id, nome, sobrenome, new Cpf(cpf), new Email(email), dataNascimento);
     }
 
     private static void validarNome(String name) {
@@ -53,7 +54,7 @@ public class User {
         return cpf;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
