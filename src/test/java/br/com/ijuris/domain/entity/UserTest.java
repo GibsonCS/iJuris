@@ -1,4 +1,4 @@
-package br.com.ijuris.domain;
+package br.com.ijuris.domain.entity;
 
 import br.com.ijuris.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
