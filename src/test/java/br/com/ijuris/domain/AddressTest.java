@@ -1,5 +1,6 @@
 package br.com.ijuris.domain;
 
+import br.com.ijuris.domain.entity.Address;
 import br.com.ijuris.domain.vo.Cep;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
