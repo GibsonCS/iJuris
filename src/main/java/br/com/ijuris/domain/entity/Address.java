@@ -17,7 +17,7 @@ public class Address {
     private String complemento;
     private String lograduouro;
 
-    public Address(UUID id, UUID idUsuario, Cep cep, String estado, String cidade, String bairro, String numero,
+    private Address(UUID id, UUID idUsuario, Cep cep, String estado, String cidade, String bairro, String numero,
                    String complemento, String lograduouro
     ) {
         this.id = id;
@@ -31,11 +31,11 @@ public class Address {
         this.lograduouro = lograduouro;
     }
 
-    public static Address create(UUID idUsuario, Cep cep, String estado, String cidade, String bairro,
+    public static Address create(UUID idUsuario, String cep, String estado, String cidade, String bairro,
                                  String numero, String complemento, String lograduouro
     ) {
 
-        return new Address(UUID.randomUUID(), idUsuario, cep, estado, cidade, bairro, numero, complemento,
+        return new Address(UUID.randomUUID(), idUsuario, new Cep(cep), estado, cidade, bairro, numero, complemento,
                 lograduouro
         );
     }
