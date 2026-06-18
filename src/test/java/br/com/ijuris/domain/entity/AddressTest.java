@@ -8,7 +8,7 @@ import java.util.UUID;
 
 class AddressTest {
 
-    private Cep CEP_VALIDO = new Cep("21532-290");
+    private String CEP_VALIDO = "21532-290";
     private String ESTADO_VALIDO = "Rio de Janeiro";
     private String CIDADE_VALIDA = "Rio de Janeiro";
     private String BAIRRO_VALIDO = "Pavuna";
@@ -24,7 +24,7 @@ class AddressTest {
                 NUMERO_VALIDO, COMPLEMENTO_VALIDO, LOGRADOURO_VALIDO
         );
 
-        Assertions.assertEquals(CEP_VALIDO.cep(), endereco.getCep().cep());
+        Assertions.assertEquals(CEP_VALIDO, endereco.getCep().cep());
         Assertions.assertTrue(BAIRRO_VALIDO.equalsIgnoreCase(endereco.getBairro()));
     }
 }
