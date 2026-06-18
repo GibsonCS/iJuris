@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 class UserTest {
 
-    private UUID VALID_ID = UUID.randomUUID();
     private String VALID_NAME = "Gibson";
     private String VALID_SOBRENOME = "CRUZ";
     private String VALID_CPF = "156.753.577-18";
@@ -19,17 +17,17 @@ class UserTest {
     @Test
     void shouldCreateANewUser() {
 
-        User userCreated = User.create(VALID_ID, VALID_NAME, VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
+        User userCreated = User.create(VALID_NAME, VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
                 VALID_DATA_NASCIMENTO
         );
 
-        Assertions.assertEquals(VALID_ID, userCreated.getId());
+        Assertions.assertEquals(VALID_CPF, userCreated.getCpf().cpf());
     }
 
     @Test
     void shouldNotCreateUserWithInvalidName() {
 
-        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, "",
+        Assertions.assertThrows(BusinessException.class, () -> User.create("",
                 VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
                 VALID_DATA_NASCIMENTO
         ));
@@ -37,7 +35,7 @@ class UserTest {
 
     @Test
     void shouldNotCreateAnUserWithInvalidCpf() {
-        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, "ASD", VALID_EMAIL,
                 VALID_DATA_NASCIMENTO
         ));
@@ -45,7 +43,7 @@ class UserTest {
 
     @Test
     void shouldNotCreateAnUserWithInvalidEmail() {
-        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, VALID_CPF, "gibson23.com",
                 VALID_DATA_NASCIMENTO
         ));
@@ -53,7 +51,7 @@ class UserTest {
 
     @Test
     void shouldNotCreateUserLessThan18YearsOld() {
-        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_ID, VALID_NAME,
+        Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
                 LocalDate.of(2023, 1, 22)
         ));
