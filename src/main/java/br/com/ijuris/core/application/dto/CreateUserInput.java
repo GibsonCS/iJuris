@@ -1,4 +1,4 @@
-package br.com.ijuris.application.dto;
+package br.com.ijuris.core.application.dto;
 
 import java.time.LocalDate;
 

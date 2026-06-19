@@ -1,6 +1,6 @@
-package br.com.ijuris.domain.entity;
+package br.com.ijuris.core.domain.entity;
 
-import br.com.ijuris.domain.vo.Cep;
+import br.com.ijuris.core.domain.vo.Cep;
 
 import java.util.UUID;
 

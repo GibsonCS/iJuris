@@ -1,6 +1,6 @@
-package br.com.ijuris.domain.repository;
+package br.com.ijuris.core.domain.repository;
 
-import br.com.ijuris.domain.entity.User;
+import br.com.ijuris.core.domain.entity.User;
 
 import java.util.Optional;
 

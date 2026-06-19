@@ -1,9 +1,9 @@
 package br.com.ijuris.infrastructure.config;
 
-import br.com.ijuris.application.usecase.CreateUser;
-import br.com.ijuris.domain.repository.AddressRepository;
-import br.com.ijuris.domain.repository.RoleRepository;
-import br.com.ijuris.domain.repository.UserRepository;
+import br.com.ijuris.core.application.usecase.CreateUser;
+import br.com.ijuris.core.domain.repository.AddressRepository;
+import br.com.ijuris.core.domain.repository.RoleRepository;
+import br.com.ijuris.core.domain.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

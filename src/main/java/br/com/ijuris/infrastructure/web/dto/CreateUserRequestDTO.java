@@ -1,7 +1,7 @@
 package br.com.ijuris.infrastructure.web.dto;
 
-import br.com.ijuris.application.dto.AddressInput;
-import br.com.ijuris.application.dto.CreateUserInput;
+import br.com.ijuris.core.application.dto.AddressInput;
+import br.com.ijuris.core.application.dto.CreateUserInput;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 

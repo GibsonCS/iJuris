@@ -1,4 +1,4 @@
-package br.com.ijuris.domain.vo;
+package br.com.ijuris.core.domain.vo;
 
 import br.com.ijuris.exception.BusinessException;
 

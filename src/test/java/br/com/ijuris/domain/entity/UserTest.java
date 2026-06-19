@@ -1,5 +1,7 @@
 package br.com.ijuris.domain.entity;
 
+import br.com.ijuris.core.domain.entity.Role;
+import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

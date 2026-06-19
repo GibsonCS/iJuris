@@ -1,7 +1,7 @@
-package br.com.ijuris.domain.entity;
+package br.com.ijuris.core.domain.entity;
 
-import br.com.ijuris.domain.vo.Cpf;
-import br.com.ijuris.domain.vo.Email;
+import br.com.ijuris.core.domain.vo.Cpf;
+import br.com.ijuris.core.domain.vo.Email;
 import br.com.ijuris.exception.BusinessException;
 
 import java.time.LocalDate;

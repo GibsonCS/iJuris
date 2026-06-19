@@ -1,8 +1,8 @@
 package br.com.ijuris.infrastructure.web.controller;
 
-import br.com.ijuris.application.dto.CreateUserInput;
-import br.com.ijuris.application.usecase.CreateUser;
-import br.com.ijuris.domain.entity.User;
+import br.com.ijuris.core.application.dto.CreateUserInput;
+import br.com.ijuris.core.application.usecase.CreateUser;
+import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.infrastructure.web.dto.CreateUserRequestDTO;
 import br.com.ijuris.infrastructure.web.dto.CreateUserResponseDTO;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package br.com.ijuris.infrastructure.persistence.adapter;
 
-import br.com.ijuris.domain.entity.User;
-import br.com.ijuris.domain.repository.UserRepository;
+import br.com.ijuris.core.domain.entity.User;
+import br.com.ijuris.core.domain.repository.UserRepository;
 import br.com.ijuris.infrastructure.persistence.repository.SpringDataUserRepository;
 import org.springframework.stereotype.Repository;
 

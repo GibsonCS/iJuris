@@ -1,7 +1,7 @@
 package br.com.ijuris.infrastructure.persistence.adapter;
 
-import br.com.ijuris.domain.entity.Role;
-import br.com.ijuris.domain.repository.RoleRepository;
+import br.com.ijuris.core.domain.entity.Role;
+import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.infrastructure.persistence.repository.SpringDataRoleRepository;
 import org.springframework.stereotype.Repository;
 

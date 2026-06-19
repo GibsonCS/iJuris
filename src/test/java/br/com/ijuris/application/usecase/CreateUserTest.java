@@ -1,13 +1,14 @@
 package br.com.ijuris.application.usecase;
 
-import br.com.ijuris.application.dto.AddressInput;
-import br.com.ijuris.application.dto.CreateUserInput;
-import br.com.ijuris.domain.entity.Address;
-import br.com.ijuris.domain.entity.Role;
-import br.com.ijuris.domain.entity.User;
-import br.com.ijuris.domain.repository.AddressRepository;
-import br.com.ijuris.domain.repository.RoleRepository;
-import br.com.ijuris.domain.repository.UserRepository;
+import br.com.ijuris.core.application.dto.AddressInput;
+import br.com.ijuris.core.application.dto.CreateUserInput;
+import br.com.ijuris.core.application.usecase.CreateUser;
+import br.com.ijuris.core.domain.entity.Address;
+import br.com.ijuris.core.domain.entity.Role;
+import br.com.ijuris.core.domain.entity.User;
+import br.com.ijuris.core.domain.repository.AddressRepository;
+import br.com.ijuris.core.domain.repository.RoleRepository;
+import br.com.ijuris.core.domain.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
