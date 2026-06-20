@@ -25,6 +25,6 @@ class AddressTest {
         );
 
         Assertions.assertEquals(CEP_VALIDO, endereco.getCep().cep());
-        Assertions.assertTrue(BAIRRO_VALIDO.equalsIgnoreCase(endereco.getBairro()));
+        Assertions.assertTrue(BAIRRO_VALIDO.equalsIgnoreCase(endereco.getNeighborhood()));
     }
 }

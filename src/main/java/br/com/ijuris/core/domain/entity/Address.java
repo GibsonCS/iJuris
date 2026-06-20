@@ -7,72 +7,70 @@ import java.util.UUID;
 public class Address {
 
     private final UUID id;
-    private final UUID IdUsuario;
+    private final UUID userId;
 
     private Cep cep;
-    private String estado;
-    private String cidade;
-    private String bairro;
-    private String numero;
-    private String complemento;
-    private String lograduouro;
+    private String state;
+    private String city;
+    private String neighborhood;
+    private String number;
+    private String complement;
+    private String street;
 
-    private Address(UUID id, UUID idUsuario, Cep cep, String estado, String cidade, String bairro, String numero,
-                   String complemento, String lograduouro
+    private Address(UUID id, UUID userId, Cep cep, String state, String city, String neighborhood, String number,
+                    String complement, String street
     ) {
         this.id = id;
-        this.IdUsuario = idUsuario;
+        this.userId = userId;
         this.cep = cep;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.lograduouro = lograduouro;
+        this.state = state;
+        this.city = city;
+        this.neighborhood = neighborhood;
+        this.number = number;
+        this.complement = complement;
+        this.street = street;
     }
 
-    public static Address create(UUID idUsuario, String cep, String estado, String cidade, String bairro,
-                                 String numero, String complemento, String lograduouro
+    public static Address create(UUID userId, String cep, String state, String city, String neighborhood, String number,
+                                 String complement, String street
     ) {
 
-        return new Address(UUID.randomUUID(), idUsuario, new Cep(cep), estado, cidade, bairro, numero, complemento,
-                lograduouro
-        );
+        return new Address(UUID.randomUUID(), userId, new Cep(cep), state, city, neighborhood, number, complement, street);
     }
 
     public UUID getId() {
         return id;
     }
 
-    public UUID getIdUsuario() {
-        return IdUsuario;
+    public UUID getUserId() {
+        return userId;
     }
 
     public Cep getCep() {
         return cep;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNumber() {
+        return number;
     }
 
-    public String getComplemento() {
-        return complemento;
+    public String getComplement() {
+        return complement;
     }
 
-    public String getLograduouro() {
-        return lograduouro;
+    public String getStreet() {
+        return street;
     }
 }
