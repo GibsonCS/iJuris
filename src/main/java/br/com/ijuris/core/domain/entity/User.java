@@ -14,36 +14,33 @@ public class User {
 
     private final UUID id;
     private final Cpf cpf;
-    private final String nome;
-    private final String sobrenome;
-    private final LocalDate dataNascimento;
+    private final String name;
+    private final String lastname;
+    private final LocalDate dateOfBirthDay;
 
     private Email email;
     private Set<Role> roles = new HashSet<>();
 
-    private User(UUID id, String nome, String sobrenome, Cpf cpf, Email email, LocalDate dataNascimento, Role role) {
+    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role) {
 
-        validarNome(nome);
-        validarNome(sobrenome);
-        validateAge(dataNascimento);
+        validateName(name);
+        validateName(lastname);
+        validateAge(dateOfBirthDay);
         addRole(role);
 
         this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
+        this.name = name;
+        this.lastname = lastname;
         this.cpf = cpf;
         this.email = email;
-        this.dataNascimento = dataNascimento;
+        this.dateOfBirthDay = dateOfBirthDay;
     }
 
-    public static User create(String nome, String sobrenome, String cpf, String email,
-                              LocalDate dataNascimento, Role role
-    ) {
-
-        return new User(UUID.randomUUID(), nome, sobrenome, new Cpf(cpf), new Email(email), dataNascimento, role);
+    public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, Role role) {
+        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role);
     }
 
-    private void validarNome(String name) {
+    private void validateName(String name) {
         if (name.isBlank()) {
             throw new BusinessException("Nome ou sobrenome não pode estar vazio!");
         }
@@ -70,12 +67,12 @@ public class User {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getLastname() {
+        return lastname;
     }
 
     public Cpf getCpf() {
@@ -86,7 +83,7 @@ public class User {
         return email;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getDateOfBirthDay() {
+        return dateOfBirthDay;
     }
 }
