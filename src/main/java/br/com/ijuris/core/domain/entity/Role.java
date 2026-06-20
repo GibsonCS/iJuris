@@ -10,15 +10,16 @@ public class Role {
     private final String name;
 
     private Role(UUID id, String name) {
+
+        if (name == null || name.isEmpty()) {
+            throw new BusinessException("Role invalida");
+        }
+
         this.id = id;
         this.name = name;
     }
 
     public static Role create(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new BusinessException("Role invalida");
-        }
-
         return new Role(UUID.randomUUID(), name);
     }
 
