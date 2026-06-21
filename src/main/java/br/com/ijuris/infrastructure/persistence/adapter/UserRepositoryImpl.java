@@ -3,12 +3,14 @@ package br.com.ijuris.infrastructure.persistence.adapter;
 import br.com.ijuris.core.domain.entity.Role;
 import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.core.domain.repository.UserRepository;
+import br.com.ijuris.core.exception.BusinessException;
 import br.com.ijuris.infrastructure.persistence.entity.RoleDbEntity;
 import br.com.ijuris.infrastructure.persistence.entity.UserDbEntity;
 import br.com.ijuris.infrastructure.persistence.repository.SpringDataRoleRepository;
 import br.com.ijuris.infrastructure.persistence.repository.SpringDataUserRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,7 +36,11 @@ public class UserRepositoryImpl implements UserRepository {
 
         Set<Role> roles = user.getRoles();
 
-        Set<RoleDbEntity> roleDbEntities = roles.stream().map(r -> springDataRoleRepository.findByName(r.getName())).collect(Collectors.toSet());
+//        Set<Optional<RoleDbEntity>> roleDbEntities = roles.stream().map(r -> springDataRoleRepository.findByName(r.getName())).collect(Collectors.toSet());
+
+        Set<RoleDbEntity> roleDbEntities = roles.stream().map(role -> springDataRoleRepository.findByName(role.getName())
+                .orElseThrow(() -> new BusinessException("Erro adiconar roles"))).collect(Collectors.toSet()
+        );
 
         UserDbEntity userDbEntity = new UserDbEntity(user.getName(),
                 user.getLastname(),
