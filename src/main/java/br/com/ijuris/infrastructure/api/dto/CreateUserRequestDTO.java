@@ -1,4 +1,4 @@
-package br.com.ijuris.infrastructure.web.dto;
+package br.com.ijuris.infrastructure.api.dto;
 
 import br.com.ijuris.core.application.dto.AddressInput;
 import br.com.ijuris.core.application.dto.CreateUserInput;
