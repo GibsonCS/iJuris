@@ -1,21 +1,18 @@
 package br.com.ijuris.core.application.usecase;
 
 import br.com.ijuris.core.application.dto.CreateUserInput;
-import br.com.ijuris.core.domain.entity.User;
-import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.entity.Address;
 import br.com.ijuris.core.domain.entity.Role;
+import br.com.ijuris.core.domain.entity.User;
+import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
 import br.com.ijuris.core.exception.BusinessException;
 import jakarta.transaction.Transactional;
 
-import java.util.Optional;
-import java.util.UUID;
-
 public class CreateUser {
 
-    private static final UUID DEFAULT_CUSTOMER_ROLE_ID = UUID.fromString("125ad5a3-d23e-4878-992b-c8e3bc112b20");
+    private static final String DEFAULT_CUSTOMER_ROLE_ID = "customer";
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
@@ -38,11 +35,8 @@ public class CreateUser {
             throw new BusinessException("O e-mail informado já está cadastrado.");
         });
 
-        Optional<Role> customerRole = roleRepository.findById(DEFAULT_CUSTOMER_ROLE_ID);
-
-        if (customerRole.isEmpty()) {
-            throw new BusinessException("A Role de cliente padrão não foi encontrada.");
-        }
+        Role customerRole = roleRepository.findByName(DEFAULT_CUSTOMER_ROLE_ID)
+                .orElseThrow(() -> new BusinessException("Role customer não encontrada."));
 
         User createdUser = User.create(
                 createUserInput.nome(),
@@ -50,7 +44,7 @@ public class CreateUser {
                 createUserInput.cpf(),
                 createUserInput.email(),
                 createUserInput.dataNascimento(),
-                customerRole.get()
+                customerRole
         );
 
         userRepository.save(createdUser);
