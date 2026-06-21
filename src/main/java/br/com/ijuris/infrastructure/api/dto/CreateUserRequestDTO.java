@@ -9,20 +9,20 @@ public record CreateUserRequestDTO(
 
         @NotNull(message = "Os dados do usuário são obrigatórios")
         @Valid
-        UserRequestDTO userRequestDTO,
+        UserRequestDTO user,
 
         @NotNull(message = "Os dados do endereço são obrigatórios")
         @Valid
-        AddressRequestDTO addressRequestDTO
+        AddressRequestDTO address
 ) {
 
     public CreateUserInput toInput() {
-        AddressInput addressInput = new AddressInput(addressRequestDTO.cep(),
-                addressRequestDTO.estado(), addressRequestDTO.cidade(), addressRequestDTO.bairro(),
-                addressRequestDTO.numero(), addressRequestDTO.complemento(), addressRequestDTO.logradouro()
+        AddressInput addressInput = new AddressInput(address.cep(),
+                address.state(), address.city(), address.neighborhood(),
+                address.number(), address.complement(), address.street()
         );
-        return new CreateUserInput(userRequestDTO.nome(), userRequestDTO.sobrenome(), userRequestDTO.cpf(),
-                userRequestDTO.email(), userRequestDTO.dataNascimento(), addressInput
+        return new CreateUserInput(user.name(), user.lastname(), user.cpf(),
+                user.email(), user.dateOfBirthday(), addressInput
         );
     }
 }
