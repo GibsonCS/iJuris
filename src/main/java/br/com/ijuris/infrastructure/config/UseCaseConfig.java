@@ -22,7 +22,6 @@ public class UseCaseConfig {
     }
 
     @Bean
-    @Transactional
     public CreateUser createUser() {
 
         return new CreateUser(userRepository,addressRepository,roleRepository);
