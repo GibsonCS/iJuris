@@ -1,6 +1,6 @@
 package br.com.ijuris.core.domain.vo;
 
-import br.com.ijuris.exception.BusinessException;
+import br.com.ijuris.core.exception.BusinessException;
 
 public record Cep(String cep) {
     public Cep {
@@ -16,4 +16,6 @@ public record Cep(String cep) {
     public String cep() {
         return cep;
     }
+
+
 }

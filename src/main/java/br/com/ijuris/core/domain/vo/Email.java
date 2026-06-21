@@ -1,6 +1,6 @@
 package br.com.ijuris.core.domain.vo;
 
-import br.com.ijuris.exception.BusinessException;
+import br.com.ijuris.core.exception.BusinessException;
 
 public record Email(String email) {
     public Email {

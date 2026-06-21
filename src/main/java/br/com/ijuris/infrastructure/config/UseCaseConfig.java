@@ -4,6 +4,7 @@ import br.com.ijuris.core.application.usecase.CreateUser;
 import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +22,7 @@ public class UseCaseConfig {
     }
 
     @Bean
+    @Transactional
     public CreateUser createUser() {
 
         return new CreateUser(userRepository,addressRepository,roleRepository);

@@ -7,7 +7,7 @@ import br.com.ijuris.core.domain.entity.Address;
 import br.com.ijuris.core.domain.entity.Role;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
-import br.com.ijuris.exception.BusinessException;
+import br.com.ijuris.core.exception.BusinessException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -51,6 +51,8 @@ public class CreateUser {
                 customerRole.get()
         );
 
+        userRepository.save(createdUser);
+
         Address createdAddress = Address.create(
                 createdUser.getId(),
                 createUserInput.addressInput().cep(),
@@ -62,7 +64,6 @@ public class CreateUser {
                 createUserInput.addressInput().logradouro()
         );
 
-        userRepository.save(createdUser);
         addressRepository.save(createdAddress);
 
         return createdUser;

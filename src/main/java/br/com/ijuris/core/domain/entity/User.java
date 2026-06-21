@@ -2,7 +2,7 @@ package br.com.ijuris.core.domain.entity;
 
 import br.com.ijuris.core.domain.vo.Cpf;
 import br.com.ijuris.core.domain.vo.Email;
-import br.com.ijuris.exception.BusinessException;
+import br.com.ijuris.core.exception.BusinessException;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -85,5 +85,9 @@ public class User {
 
     public LocalDate getDateOfBirthDay() {
         return dateOfBirthDay;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
     }
 }

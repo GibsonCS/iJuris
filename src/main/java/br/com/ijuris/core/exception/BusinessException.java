@@ -1,4 +1,4 @@
-package br.com.ijuris.exception;
+package br.com.ijuris.core.exception;
 
 public class BusinessException extends RuntimeException {
     public BusinessException(String message) {
