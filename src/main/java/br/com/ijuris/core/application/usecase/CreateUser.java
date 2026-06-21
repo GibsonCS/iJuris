@@ -8,6 +8,7 @@ import br.com.ijuris.core.domain.entity.Role;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
 import br.com.ijuris.core.exception.BusinessException;
+import jakarta.transaction.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -30,6 +31,7 @@ public class CreateUser {
         this.roleRepository = roleRepository;
     }
 
+    @Transactional
     public User execute(CreateUserInput createUserInput) {
 
         userRepository.findByEmail(createUserInput.email()).ifPresent(user -> {
