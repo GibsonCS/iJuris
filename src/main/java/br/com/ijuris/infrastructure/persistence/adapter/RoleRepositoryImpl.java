@@ -30,4 +30,16 @@ public class RoleRepositoryImpl implements RoleRepository {
 
         throw new BusinessException("Role não encotrada");
     }
+
+    @Override
+    public Optional<Role> findByName(String name) {
+
+        Optional<RoleDbEntity> roleDbEntity = Optional.ofNullable(springDataRoleRepository.findByName(name)
+                .orElseThrow(() -> new BusinessException("Role customer não encontrada"))
+        );
+
+        Role role = Role.create(name);
+
+        return Optional.of(role);
+    }
 }
