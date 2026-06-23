@@ -3,6 +3,7 @@ package br.com.ijuris.infrastructure.api.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -25,6 +26,7 @@ public record UserRequestDTO(
         LocalDate dateOfBirthday,
 
         @NotBlank(message = "Password não deve ser vazio.")
+        @Size(min = 6, message = "A senha deve ter no mínimo seis dígitos.")
         String password,
 
         @NotBlank(message = "Confirmação do password inválida")
