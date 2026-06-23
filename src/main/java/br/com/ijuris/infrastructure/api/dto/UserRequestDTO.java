@@ -22,6 +22,12 @@ public record UserRequestDTO(
         String email,
 
         @NotNull(message = "A data de nascimento é obrigatória")
-        LocalDate dateOfBirthday
+        LocalDate dateOfBirthday,
+
+        @NotBlank(message = "Password não deve ser vazio.")
+        String password,
+
+        @NotBlank(message = "Confirmação do password inválida")
+        String confirmPassword
 ) {
 }
