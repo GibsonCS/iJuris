@@ -22,7 +22,7 @@ public record CreateUserRequestDTO(
                 address.number(), address.complement(), address.street()
         );
         return new CreateUserInput(user.name(), user.lastname(), user.cpf(),
-                user.email(), user.password(), user.confirmPassword(), user.dateOfBirthday(), addressInput
+                user.email(), user.password(),  user.dateOfBirthday(), addressInput
         );
     }
 }

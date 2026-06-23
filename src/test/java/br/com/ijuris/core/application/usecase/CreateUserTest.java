@@ -33,7 +33,6 @@ class CreateUserTest {
     private final String VALID_CPF = "156.753.577-18";
     private final String VALID_EMAIL = "gibson8fla@gmail.com";
     private final String VALID_PASSWORD = "Gbs4023$";
-    private final String VALID_CONFIRM_PASSWORD = "Gbs4023$";
     private final LocalDate VALID_BIRTH_DATE = LocalDate.of(1996, 9, 22);
 
     private final String VALID_ZIP_CODE = "21532-290";
@@ -69,7 +68,7 @@ class CreateUserTest {
         addressInput = new AddressInput(VALID_ZIP_CODE, VALID_STATE, VALID_CITY, VALID_NEIGHBORHOOD, VALID_NUMBER,
                 VALID_COMPLEMENT, VALID_STREET);
 
-        createUserInput = new CreateUserInput(VALID_NAME, VALID_LAST_NAME, VALID_CPF, VALID_EMAIL,VALID_PASSWORD,VALID_CONFIRM_PASSWORD, VALID_BIRTH_DATE,
+        createUserInput = new CreateUserInput(VALID_NAME, VALID_LAST_NAME, VALID_CPF, VALID_EMAIL,VALID_PASSWORD, VALID_BIRTH_DATE,
                 addressInput);
     }
 

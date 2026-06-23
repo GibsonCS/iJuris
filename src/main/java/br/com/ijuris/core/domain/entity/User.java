@@ -42,6 +42,10 @@ public class User {
         return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role, password);
     }
 
+    public void validatePassword(String password, String confirmPassword){
+
+    }
+
     private void validateName(String name) {
         if (name.isBlank()) {
             throw new BusinessException("Nome ou sobrenome não pode estar vazio!");

@@ -1,9 +1,6 @@
 package br.com.ijuris.infrastructure.api.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -32,4 +29,13 @@ public record UserRequestDTO(
         @NotBlank(message = "Confirmação do password inválida")
         String confirmPassword
 ) {
+
+        @AssertTrue(message = "As senhas não conferem")
+        public boolean isPasswordMatching() {
+                if (password == null || confirmPassword == null) {
+                        return true;
+                }
+
+                return password.equals(confirmPassword);
+        }
 }

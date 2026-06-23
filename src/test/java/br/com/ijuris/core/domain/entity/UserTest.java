@@ -16,7 +16,6 @@ class UserTest {
     private LocalDate VALID_DATA_NASCIMENTO = LocalDate.of(1996, 9, 22);
     private String VALID_PASSWORD = "Gbso4002$";
 
-
     Role role;
 
     @BeforeEach
@@ -66,5 +65,10 @@ class UserTest {
                 VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
                 LocalDate.of(2023, 1, 22), role,VALID_PASSWORD
         ));
+    }
+
+    @Test
+    void shouldNotCreateAnUserWithInvalidPassword(){
+
     }
 }
