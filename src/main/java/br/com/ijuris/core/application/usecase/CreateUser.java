@@ -31,7 +31,7 @@ public class CreateUser {
     @Transactional
     public User execute(CreateUserInput createUserInput) {
 
-        userRepository.findByEmail(createUserInput.email()).ifPresent(user -> {
+        userRepository.findByEmail(createUserInput.userInput().email()).ifPresent(user -> {
             throw new BusinessException("O e-mail informado já está cadastrado.");
         });
 
@@ -39,13 +39,13 @@ public class CreateUser {
                 .orElseThrow(() -> new BusinessException("Role customer não encontrada."));
 
         User createdUser = User.create(
-                createUserInput.nome(),
-                createUserInput.sobrenome(),
-                createUserInput.cpf(),
-                createUserInput.email(),
-                createUserInput.dataNascimento(),
+                createUserInput.userInput().name(),
+                createUserInput.userInput().lastname(),
+                createUserInput.userInput().cpf(),
+                createUserInput.userInput().email(),
+                createUserInput.userInput().dateOfBirthday(),
                 customerRole,
-                createUserInput.password()
+                createUserInput.userInput().password()
         );
 
         userRepository.save(createdUser);
