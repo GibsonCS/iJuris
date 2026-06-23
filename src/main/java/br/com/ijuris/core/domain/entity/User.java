@@ -2,6 +2,7 @@ package br.com.ijuris.core.domain.entity;
 
 import br.com.ijuris.core.domain.vo.Cpf;
 import br.com.ijuris.core.domain.vo.Email;
+import br.com.ijuris.core.domain.vo.Password;
 import br.com.ijuris.core.exception.BusinessException;
 
 import java.time.LocalDate;
@@ -20,9 +21,9 @@ public class User {
 
     private Email email;
     private Set<Role> roles = new HashSet<>();
-    private String password;
+    private Password password;
 
-    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role, String password) {
+    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role, Password password) {
         this.password = password;
 
         validateName(name);
@@ -39,7 +40,7 @@ public class User {
     }
 
     public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, Role role, String password) {
-        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role, password);
+        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role, new Password(password));
     }
 
     public void validatePassword(String password, String confirmPassword){
@@ -97,5 +98,5 @@ public class User {
         return roles;
     }
 
-    public String getPassword() {return  password;}
+    public Password getPassword() {return  password;}
 }
