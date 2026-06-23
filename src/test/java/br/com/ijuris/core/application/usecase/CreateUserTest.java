@@ -2,7 +2,7 @@ package br.com.ijuris.core.application.usecase;
 
 import br.com.ijuris.core.application.dto.AddressInput;
 import br.com.ijuris.core.application.dto.CreateUserInput;
-import br.com.ijuris.core.application.usecase.CreateUser;
+import br.com.ijuris.core.application.dto.UserInput;
 import br.com.ijuris.core.domain.entity.Address;
 import br.com.ijuris.core.domain.entity.Role;
 import br.com.ijuris.core.domain.entity.User;
@@ -58,6 +58,7 @@ class CreateUserTest {
     CreateUser createUser;
 
     CreateUserInput createUserInput;
+    UserInput userInput;
     AddressInput addressInput;
 
     @Mock
@@ -66,10 +67,12 @@ class CreateUserTest {
     @BeforeEach
     void setup() {
         addressInput = new AddressInput(VALID_ZIP_CODE, VALID_STATE, VALID_CITY, VALID_NEIGHBORHOOD, VALID_NUMBER,
-                VALID_COMPLEMENT, VALID_STREET);
+                VALID_COMPLEMENT, VALID_STREET
+        );
 
-        createUserInput = new CreateUserInput(VALID_NAME, VALID_LAST_NAME, VALID_CPF, VALID_EMAIL,VALID_PASSWORD, VALID_BIRTH_DATE,
-                addressInput);
+        userInput = new UserInput(VALID_NAME, VALID_LAST_NAME, VALID_CPF, VALID_EMAIL, VALID_PASSWORD, VALID_BIRTH_DATE);
+
+        createUserInput = new CreateUserInput(userInput, addressInput);
     }
 
     @Test
