@@ -44,7 +44,8 @@ public class CreateUser {
                 createUserInput.cpf(),
                 createUserInput.email(),
                 createUserInput.dataNascimento(),
-                customerRole
+                customerRole,
+                createUserInput.password()
         );
 
         userRepository.save(createdUser);

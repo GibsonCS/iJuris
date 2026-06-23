@@ -20,8 +20,10 @@ public class User {
 
     private Email email;
     private Set<Role> roles = new HashSet<>();
+    private String password;
 
-    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role) {
+    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role, String password) {
+        this.password = password;
 
         validateName(name);
         validateName(lastname);
@@ -36,8 +38,8 @@ public class User {
         this.dateOfBirthDay = dateOfBirthDay;
     }
 
-    public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, Role role) {
-        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role);
+    public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, Role role, String password) {
+        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role, password);
     }
 
     private void validateName(String name) {
@@ -90,4 +92,6 @@ public class User {
     public Set<Role> getRoles() {
         return roles;
     }
+
+    public String getPassword() {return  password;}
 }

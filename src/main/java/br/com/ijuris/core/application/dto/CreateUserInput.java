@@ -7,6 +7,8 @@ public record CreateUserInput(
         String sobrenome,
         String cpf,
         String email,
+        String password,
+        String confirmPassword,
         LocalDate dataNascimento,
         AddressInput addressInput
 ) {
