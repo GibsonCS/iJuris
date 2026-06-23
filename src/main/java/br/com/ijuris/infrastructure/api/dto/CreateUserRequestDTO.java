@@ -2,6 +2,7 @@ package br.com.ijuris.infrastructure.api.dto;
 
 import br.com.ijuris.core.application.dto.AddressInput;
 import br.com.ijuris.core.application.dto.CreateUserInput;
+import br.com.ijuris.core.application.dto.UserInput;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,12 +18,14 @@ public record CreateUserRequestDTO(
 ) {
 
     public CreateUserInput toInput() {
-        AddressInput addressInput = new AddressInput(address.cep(),
-                address.state(), address.city(), address.neighborhood(),
-                address.number(), address.complement(), address.street()
+        AddressInput addressInput = new AddressInput(address.cep(), address.state(), address.city(),
+                address.neighborhood(), address.number(), address.complement(), address.street()
         );
-        return new CreateUserInput(user.name(), user.lastname(), user.cpf(),
-                user.email(), user.password(),  user.dateOfBirthday(), addressInput
+
+        UserInput userInput = new UserInput(user.name(), user.lastname(), user.cpf(), user.email(), user.password(),
+                user.dateOfBirthday()
         );
+
+        return new CreateUserInput(userInput, addressInput);
     }
 }
