@@ -1,4 +1,4 @@
-package br.com.ijuris.application.usecase;
+package br.com.ijuris.core.application.usecase;
 
 import br.com.ijuris.core.application.dto.AddressInput;
 import br.com.ijuris.core.application.dto.CreateUserInput;
