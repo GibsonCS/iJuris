@@ -9,12 +9,14 @@ import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
+import br.com.ijuris.core.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -64,6 +66,9 @@ class CreateUserTest {
     @Mock
     Role role;
 
+    @Mock
+    User user;
+
     @BeforeEach
     void setup() {
         addressInput = new AddressInput(VALID_ZIP_CODE, VALID_STATE, VALID_CITY, VALID_NEIGHBORHOOD, VALID_NUMBER,
@@ -90,5 +95,17 @@ class CreateUserTest {
         verify(userRepository, times(1)).save(any(User.class));
         verify(addressRepository, times(1)).save(any(Address.class));
         verify(roleRepository, times(1)).findByName("customer");
+    }
+
+    @Test
+    void shouldNotCreateUserWithEmailAlreadyExists(){
+
+        when(userRepository.findByEmail(any())).thenReturn( Optional.of(user));
+
+        BusinessException e = Assertions.assertThrows(BusinessException.class, () -> createUser.execute(createUserInput));
+
+        Assertions.assertEquals("O e-mail informado já está cadastrado.", e.getMessage());
+
+        verify(userRepository, times(1)).findByEmail(any());
     }
 }
