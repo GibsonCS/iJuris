@@ -19,6 +19,7 @@ public class UserDbEntity {
     private String lastName;
     private String cpf;
     private String email;
+    private String password;
 
     @Column(name = "date_of_birthday")
     private LocalDate dateOfBirthDay;
