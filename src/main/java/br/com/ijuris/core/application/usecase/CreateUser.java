@@ -1,6 +1,7 @@
 package br.com.ijuris.core.application.usecase;
 
 import br.com.ijuris.core.application.dto.CreateUserInput;
+import br.com.ijuris.core.application.port.PasswordEncoder;
 import br.com.ijuris.core.domain.entity.Address;
 import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.core.domain.repository.AddressRepository;
@@ -15,15 +16,18 @@ public class CreateUser {
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     public CreateUser(
             UserRepository userRepository,
             AddressRepository addressRepository,
-            RoleRepository roleRepository
+            RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -39,7 +43,7 @@ public class CreateUser {
                 createUserInput.userInput().cpf(),
                 createUserInput.userInput().email(),
                 createUserInput.userInput().dateOfBirthday(),
-                createUserInput.userInput().password()
+                passwordEncoder.encode(createUserInput.userInput().password())
         );
 
         userRepository.save(createdUser);
