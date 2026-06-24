@@ -28,13 +28,19 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
 
-        UserDbEntity userDbEntity = springDataUserRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not founded"));
 
-        User user = User.create(userDbEntity.getName(), userDbEntity.getLastName(), userDbEntity.getCpf(),
-                userDbEntity.getEmail(), userDbEntity.getDateOfBirthDay(), userDbEntity.getPassword());
+        Optional<UserDbEntity> userDbEntity = springDataUserRepository.findByEmail(email);
 
-        userDbEntity.getRoles().forEach(r -> {
+        if (userDbEntity.isEmpty()) {
+            return Optional.empty();
+        }
+
+        User user = User.create(userDbEntity.get().getName(), userDbEntity.get().getLastName(), userDbEntity.get().getCpf(),
+                userDbEntity.get().getEmail(), userDbEntity.get().getDateOfBirthDay(),
+                userDbEntity.get().getPassword()
+        );
+
+        userDbEntity.get().getRoles().forEach(r -> {
             user.addRole(Role.create(r.getName()));
         });
 
@@ -55,6 +61,7 @@ public class UserRepositoryImpl implements UserRepository {
                 user.getCpf().cpf(),
                 user.getEmail().email(),
                 user.getDateOfBirthDay(),
+                user.getPassword().password(),
                 roleDbEntities
         );
 
