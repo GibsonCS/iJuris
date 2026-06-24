@@ -29,12 +29,13 @@ public class UserDbEntity {
 
     public UserDbEntity(){}
 
-    public UserDbEntity(String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay, Set<RoleDbEntity> roles) {
+    public UserDbEntity(String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay, String password, Set<RoleDbEntity> roles) {
         this.name = name;
         this.lastName = lastName;
         this.cpf = cpf;
         this.email = email;
         this.dateOfBirthDay = dateOfBirthDay;
+        this.password = password;
         this.roles = roles;
     }
 }
