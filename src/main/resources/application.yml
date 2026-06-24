@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: iJusris
+  datasource:
+    url: jdbc:h2:mem:ijuris
+    username: sa
+    password: 123
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    #Ativa script data.sql
+    defer-datasource-initialization: true
