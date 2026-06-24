@@ -15,21 +15,34 @@ public class UserDbEntity {
 
     @Id
     private UUID id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(unique = true, nullable = false)
     private String cpf;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "date_of_birthday")
+    @Column(name = "date_of_birthday", nullable = false)
     private LocalDate dateOfBirthDay;
 
     @ManyToMany
     private Set<RoleDbEntity> roles = new HashSet<>();
 
-    public UserDbEntity(){}
+    public UserDbEntity() {
+    }
 
-    public UserDbEntity(String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay, String password, Set<RoleDbEntity> roles) {
+    public UserDbEntity(String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay,
+                        String password, Set<RoleDbEntity> roles
+    ) {
         this.name = name;
         this.lastName = lastName;
         this.cpf = cpf;
