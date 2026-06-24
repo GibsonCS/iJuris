@@ -23,13 +23,12 @@ public class User {
     private Set<Role> roles = new HashSet<>();
     private Password password;
 
-    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Role role, Password password) {
+    private User(UUID id, String name, String lastname, Cpf cpf, Email email, LocalDate dateOfBirthDay, Password password) {
         this.password = password;
 
         validateName(name);
         validateName(lastname);
         validateAge(dateOfBirthDay);
-        addRole(role);
 
         this.id = id;
         this.name = name;
@@ -37,10 +36,11 @@ public class User {
         this.cpf = cpf;
         this.email = email;
         this.dateOfBirthDay = dateOfBirthDay;
+        this.roles.add(Role.create("customer"));
     }
 
-    public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, Role role, String password) {
-        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, role, new Password(password));
+    public static User create(String nome, String lastName, String cpf, String email, LocalDate dataNascimento, String password) {
+        return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, new Password(password));
     }
 
     public void validatePassword(String password, String confirmPassword){
@@ -61,7 +61,7 @@ public class User {
         }
     }
 
-    private void addRole(Role r) {
+    public void addRole(Role r) {
 
         if (this.roles.contains(r)) {
             throw new BusinessException("Role já existe.");
