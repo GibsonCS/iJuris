@@ -45,13 +45,8 @@ class CreateUserTest {
     private final String VALID_COMPLEMENT = "Casa 36";
     private final String VALID_STREET = "AV. Sargento de Milicias";
 
-    private final UUID DEFAULT_ROLE_ID = UUID.fromString("125ad5a3-d23e-4878-992b-c8e3bc112b20");
-
     @Mock
     UserRepository userRepository;
-
-    @Mock
-    RoleRepository roleRepository;
 
     @Mock
     AddressRepository addressRepository;
@@ -62,9 +57,6 @@ class CreateUserTest {
     CreateUserInput createUserInput;
     UserInput userInput;
     AddressInput addressInput;
-
-    @Mock
-    Role role;
 
     @Mock
     User user;
@@ -84,7 +76,6 @@ class CreateUserTest {
     void shouldCreateANewUser() {
 
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(roleRepository.findByName("customer")).thenReturn(Optional.of(role));
 
         User createdUser = createUser.execute(createUserInput);
 
@@ -94,7 +85,6 @@ class CreateUserTest {
 
         verify(userRepository, times(1)).save(any(User.class));
         verify(addressRepository, times(1)).save(any(Address.class));
-        verify(roleRepository, times(1)).findByName("customer");
     }
 
     @Test

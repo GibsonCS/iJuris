@@ -16,18 +16,12 @@ class UserTest {
     private LocalDate VALID_DATA_NASCIMENTO = LocalDate.of(1996, 9, 22);
     private String VALID_PASSWORD = "Gbso4002$";
 
-    Role role;
-
-    @BeforeEach
-    void setup() {
-        role = Role.create("customer");
-    }
 
     @Test
     void shouldCreateANewUser() {
 
         User userCreated = User.create(VALID_NAME, VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
-                VALID_DATA_NASCIMENTO, role,VALID_PASSWORD
+                VALID_DATA_NASCIMENTO,VALID_PASSWORD
         );
 
         Assertions.assertEquals(VALID_CPF, userCreated.getCpf().cpf());
@@ -38,7 +32,7 @@ class UserTest {
 
         Assertions.assertThrows(BusinessException.class, () -> User.create("",
                 VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
-                VALID_DATA_NASCIMENTO, role,VALID_PASSWORD
+                VALID_DATA_NASCIMENTO,VALID_PASSWORD
         ));
     }
 
@@ -46,7 +40,7 @@ class UserTest {
     void shouldNotCreateAnUserWithInvalidCpf() {
         Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, "ASD", VALID_EMAIL,
-                VALID_DATA_NASCIMENTO, role,VALID_PASSWORD
+                VALID_DATA_NASCIMENTO,VALID_PASSWORD
         ));
     }
 
@@ -54,8 +48,7 @@ class UserTest {
     void shouldNotCreateAnUserWithInvalidEmail() {
         Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, VALID_CPF, "gibson23.com",
-                VALID_DATA_NASCIMENTO, role,VALID_PASSWORD
-
+                VALID_DATA_NASCIMENTO,VALID_PASSWORD
         ));
     }
 
@@ -63,7 +56,7 @@ class UserTest {
     void shouldNotCreateUserLessThan18YearsOld() {
         Assertions.assertThrows(BusinessException.class, () -> User.create(VALID_NAME,
                 VALID_SOBRENOME, VALID_CPF, VALID_EMAIL,
-                LocalDate.of(2023, 1, 22), role,VALID_PASSWORD
+                LocalDate.of(2023, 1, 22),VALID_PASSWORD
         ));
     }
 

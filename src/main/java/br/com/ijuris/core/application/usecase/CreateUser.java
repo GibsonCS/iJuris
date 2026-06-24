@@ -2,7 +2,6 @@ package br.com.ijuris.core.application.usecase;
 
 import br.com.ijuris.core.application.dto.CreateUserInput;
 import br.com.ijuris.core.domain.entity.Address;
-import br.com.ijuris.core.domain.entity.Role;
 import br.com.ijuris.core.domain.entity.User;
 import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.repository.RoleRepository;
@@ -16,7 +15,7 @@ public class CreateUser {
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
-    private final RoleRepository roleRepository;
+
 
     public CreateUser(
             UserRepository userRepository,
@@ -25,7 +24,6 @@ public class CreateUser {
     ) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
-        this.roleRepository = roleRepository;
     }
 
     @Transactional
@@ -35,16 +33,12 @@ public class CreateUser {
             throw new BusinessException("O e-mail informado já está cadastrado.");
         });
 
-        Role customerRole = roleRepository.findByName(DEFAULT_CUSTOMER_ROLE_ID)
-                .orElseThrow(() -> new BusinessException("Role customer não encontrada."));
-
         User createdUser = User.create(
                 createUserInput.userInput().name(),
                 createUserInput.userInput().lastname(),
                 createUserInput.userInput().cpf(),
                 createUserInput.userInput().email(),
                 createUserInput.userInput().dateOfBirthday(),
-                customerRole,
                 createUserInput.userInput().password()
         );
 
