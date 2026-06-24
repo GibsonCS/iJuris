@@ -10,7 +10,6 @@ import br.com.ijuris.infrastructure.persistence.repository.SpringDataRoleReposit
 import br.com.ijuris.infrastructure.persistence.repository.SpringDataUserRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,15 +27,24 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+
+        UserDbEntity userDbEntity = springDataUserRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not founded"));
+
+        User user = User.create(userDbEntity.getName(), userDbEntity.getLastName(), userDbEntity.getCpf(),
+                userDbEntity.getEmail(), userDbEntity.getDateOfBirthDay(), userDbEntity.getPassword());
+
+        userDbEntity.getRoles().forEach(r -> {
+            user.addRole(Role.create(r.getName()));
+        });
+
+        return Optional.of(user);
     }
 
     @Override
     public void save(User user) {
 
         Set<Role> roles = user.getRoles();
-
-//        Set<Optional<RoleDbEntity>> roleDbEntities = roles.stream().map(r -> springDataRoleRepository.findByName(r.getName())).collect(Collectors.toSet());
 
         Set<RoleDbEntity> roleDbEntities = roles.stream().map(role -> springDataRoleRepository.findByName(role.getName())
                 .orElseThrow(() -> new BusinessException("Erro adiconar roles"))).collect(Collectors.toSet()
