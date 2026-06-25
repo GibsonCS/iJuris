@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -56,7 +57,9 @@ public class UserRepositoryImpl implements UserRepository {
                 .orElseThrow(() -> new BusinessException("Erro adiconar roles"))).collect(Collectors.toSet()
         );
 
-        UserDbEntity userDbEntity = new UserDbEntity(user.getName(),
+        UserDbEntity userDbEntity = new UserDbEntity(
+                user.getId(),
+                user.getName(),
                 user.getLastname(),
                 user.getCpf().cpf(),
                 user.getEmail().email(),
@@ -65,8 +68,24 @@ public class UserRepositoryImpl implements UserRepository {
                 roleDbEntities
         );
 
-        userDbEntity.setId(user.getId());
-
         springDataUserRepository.save(userDbEntity);
+    }
+
+    @Override
+    public Optional<User> findById(UUID userId) {
+
+        Optional<UserDbEntity> userDbEntity = springDataUserRepository.findById(userId);
+
+        if(userDbEntity.isEmpty()){
+            return Optional.empty();
+        }
+
+        User createdUser = User.restore(userDbEntity.get().getId(), userDbEntity.get().getName(),
+                userDbEntity.get().getLastName(),userDbEntity.get().getCpf(),
+                userDbEntity.get().getEmail(),userDbEntity.get().getDateOfBirthDay(),userDbEntity.get().getPassword());
+
+        userDbEntity.get().getRoles().forEach(r -> createdUser.addRole(Role.create(r.getName())));
+
+        return Optional.of(createdUser);
     }
 }

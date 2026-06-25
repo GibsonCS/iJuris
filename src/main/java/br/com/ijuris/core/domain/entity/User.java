@@ -15,10 +15,10 @@ public class User {
 
     private final UUID id;
     private final Cpf cpf;
-    private final String name;
-    private final String lastname;
-    private final LocalDate dateOfBirthDay;
 
+    private String name;
+    private String lastname;
+    private LocalDate dateOfBirthDay;
     private Email email;
     private Set<Role> roles = new HashSet<>();
     private Password password;
@@ -43,7 +43,11 @@ public class User {
         return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, new Password(password));
     }
 
-    public void validatePassword(String password, String confirmPassword){
+    public static User restore(UUID id, String name, String lastname,String cpf, String email, LocalDate dataNascimento, String password) {
+        return new User(id, name, lastname, new Cpf(cpf), new Email(email), dataNascimento, new Password(password));
+    }
+
+    public void validatePassword(String password, String confirmPassword) {
 
     }
 
@@ -68,6 +72,36 @@ public class User {
         }
 
         this.roles.add(r);
+    }
+
+    public void changeName(String name) {
+        if (name.isEmpty()) {
+            throw new BusinessException("O nome não pode ser vazio");
+        }
+        if (name.length() <= 2) {
+            throw new BusinessException("O nome deve ter mais de 2 caracteres.");
+        }
+        this.name = name;
+    }
+
+    public void changeDateOfBirthday(LocalDate dateOfBirthDay) {
+        int age = Period.between(dateOfBirthDay, LocalDate.now()).getYears();
+
+        if (age < 18) {
+            throw new BusinessException("Você deve ter 18 anos ou mais para usar nossos serviços.");
+        }
+
+        this.dateOfBirthDay = dateOfBirthDay;
+    }
+
+    public void changeLastname(String lastname) {
+        if (lastname.isEmpty()) {
+            throw new BusinessException("O sobrenome não pode ser vazio");
+        }
+        if (lastname.length() <= 2) {
+            throw new BusinessException("O nome sobrenome ter mais de 2 caracteres.");
+        }
+        this.lastname = lastname;
     }
 
     public UUID getId() {
@@ -98,5 +132,7 @@ public class User {
         return roles;
     }
 
-    public Password getPassword() {return  password;}
+    public Password getPassword() {
+        return password;
+    }
 }

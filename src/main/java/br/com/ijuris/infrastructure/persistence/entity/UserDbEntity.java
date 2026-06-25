@@ -40,9 +40,10 @@ public class UserDbEntity {
     public UserDbEntity() {
     }
 
-    public UserDbEntity(String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay,
+    public UserDbEntity(UUID id,String name, String lastName, String cpf, String email, LocalDate dateOfBirthDay,
                         String password, Set<RoleDbEntity> roles
     ) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.cpf = cpf;

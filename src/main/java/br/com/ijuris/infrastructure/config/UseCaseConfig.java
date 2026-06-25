@@ -1,7 +1,9 @@
 package br.com.ijuris.infrastructure.config;
 
 import br.com.ijuris.core.application.port.PasswordEncoder;
+import br.com.ijuris.core.application.port.in.UpdateUserProfileUseCase;
 import br.com.ijuris.core.application.usecase.CreateUser;
+import br.com.ijuris.core.application.usecase.UpdateUserProfileInteractor;
 import br.com.ijuris.core.domain.repository.AddressRepository;
 import br.com.ijuris.core.domain.repository.RoleRepository;
 import br.com.ijuris.core.domain.repository.UserRepository;
@@ -25,7 +27,11 @@ public class UseCaseConfig {
 
     @Bean
     public CreateUser createUser() {
-
         return new CreateUser(userRepository,addressRepository,roleRepository, passwordEncoder);
+    }
+
+    @Bean
+    public UpdateUserProfileUseCase updateUserProfileUseCase() {
+        return new UpdateUserProfileInteractor(userRepository);
     }
 }
