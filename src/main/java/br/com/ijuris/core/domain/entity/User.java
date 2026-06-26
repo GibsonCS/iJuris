@@ -43,7 +43,7 @@ public class User {
         return new User(UUID.randomUUID(), nome, lastName, new Cpf(cpf), new Email(email), dataNascimento, new Password(password));
     }
 
-    public static User restore(UUID id, String name, String lastname,String cpf, String email, LocalDate dataNascimento, String password) {
+    public static User restore(UUID id, String name, String lastname, String cpf, String email, LocalDate dataNascimento, String password) {
         return new User(id, name, lastname, new Cpf(cpf), new Email(email), dataNascimento, new Password(password));
     }
 
@@ -63,6 +63,10 @@ public class User {
         if (age < 18) {
             throw new BusinessException("Você deve ter 18 anos ou mais para usar nossos serviços.");
         }
+    }
+
+    public void changeEmail(String email) {
+        this.email = new Email(email);
     }
 
     public void addRole(Role r) {
